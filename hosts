@@ -1,1 +1,1 @@
-10.163.12.42
+10.163.12.42 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
