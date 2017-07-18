@@ -1,0 +1,9 @@
+---
+- hosts: all
+  user: "core"
+  vars:
+    ansible_python_interpreter: "/home/core/bin/python"
+  tasks:
+    - ping:
+
+

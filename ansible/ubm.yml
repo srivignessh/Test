@@ -1,0 +1,28 @@
+- hosts: "ubm"
+  user: core
+  serial: 500
+  gather_facts: "no"
+  pre_tasks:
+    - include_vars: "base.yml"
+
+    - name: "Place the appropriate passwd file"
+      copy:
+        src: "{{ passwd_file }}"
+        dest: "/home/core/passwd"
+      notify:
+        - "Rebuild the Password Database"
+      tags:
+        - "passwd"
+
+    - name: "Place the group file from the vars"
+      copy:
+        src: "{{ unix_group_files }}"
+        dest: "/home/core/group"
+      tags:
+        - "groups"
+
+  handlers:
+    - name: "Rebuild the Password Database"
+      shell: "/bin/cp /home/core/group /home/core/passwd && /usr/sbin/pwconv"
+      tags:
+        - "passwd"

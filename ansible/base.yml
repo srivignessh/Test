@@ -1,0 +1,4 @@
+application_name: contrail-ubm
+ansible_python_interpreter: "/home/core/bin/python"
+passwd_file: secrets/pswd.file
+unix_group_files: secrets/grp.file
